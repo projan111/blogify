@@ -22,4 +22,12 @@ router.post("/signup", async (req, res) => {
   return res.redirect("/");
 });
 
+router.post("/signin", async (req, res) => {
+  const { email, password } = req.body;
+  const user = await User.matchPassword({ email, password });
+
+  console.log("User:", user);
+  return res.redirect("/");
+});
+
 module.exports = router;
