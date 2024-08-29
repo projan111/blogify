@@ -14,6 +14,14 @@ app.get("/", (req, res) => {
   return res.render("home");
 });
 
+// API Health Check
+app.get("/health-check", (req, res) => {
+  return res.status(201).json({
+    status: "Success",
+    message: "your health is in good condition.",
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Listening to http://localhost:${PORT}`);
 });
