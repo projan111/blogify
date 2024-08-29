@@ -5,21 +5,21 @@ const userSchema = new Schema(
   {
     fullName: {
       type: String,
-      require: true,
+      required: true,
     },
     email: {
       type: String,
-      require: true,
+      required: true,
       unique: true,
+      lowarcase: true,
     },
     salt: {
       // To hash the password
       type: String,
-      require: true,
     },
     password: {
       type: String,
-      require: true,
+      required: true,
     },
     profileImage: {
       type: String,
@@ -50,8 +50,8 @@ userSchema.pre("save", function (next) {
   next();
 });
 
-userSchema.static("matchPassword", function (email, password) {
-  const user = this.findOne({ email });
+userSchema.static("matchPassword", async function (email, password) {
+  const user = await this.findOne({ email });
   if (!user) throw new Error("User not found");
 
   const salt = user.salt;
@@ -64,7 +64,7 @@ userSchema.static("matchPassword", function (email, password) {
   if (hashedPassword !== userProvidedHash)
     throw new Error("Password does not matched!");
 
-  return { ...user, password: undefined, salt: undefined };
+  return user;
 });
 
 const User = model("user", userSchema);
