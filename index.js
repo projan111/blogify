@@ -9,6 +9,7 @@ const { mongoConnection } = require("./config/db");
 const {
   checkForAuthenticationCookie,
 } = require("./middlewares/authentication");
+const blogRoute = require("./routes/blog");
 
 // Mongodb Connection
 mongoConnection("mongodb://127.0.0.1:27017/blogify");
@@ -30,6 +31,7 @@ app.get("/", (req, res) => {
 
 // Import Route Handler
 app.use("/user", userRoutes);
+app.use("/blog", blogRoute)
 
 // API Health Check
 app.get("/health-check", (req, res) => {
