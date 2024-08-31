@@ -24,6 +24,7 @@ router.post("/signup", async (req, res) => {
 
 router.post("/signin", async (req, res) => {
   const { email, password } = req.body;
+  // If the email and the pasword are matched the user's email and password from the database
   const user = await User.matchPassword(email, password);
 
   console.log("User:", user);
