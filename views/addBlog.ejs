@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head') %>
+  </head>
+  <body>
+    <%- include('./partials/nav') %>
+    <form action="/blog">
+      <div class="container mt-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          name="title"
+          aria-describedby="emailHelp"
+          placeholder="add title"
+        />
+      </div>
+    </form>
+    <%- include('./partials/script') %>
+  </body>
+</html>
