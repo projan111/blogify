@@ -5,7 +5,7 @@ function checkForAuthenticationCookie(cookieName) {
     const tokenCookieValue = req.cookies[cookieName];
 
     if (!tokenCookieValue) {
-      next();
+      return next();
     }
 
     try {
@@ -14,7 +14,7 @@ function checkForAuthenticationCookie(cookieName) {
     } catch (error) {
       console.log("error is in middleware", error);
     }
-    next();
+    return next();
   };
 }
 
