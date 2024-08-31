@@ -25,7 +25,7 @@ app.set("views", path.resolve("./views"));
 
 // Home route
 app.get("/", (req, res) => {
-  return res.render("home");
+  return res.render("home", { user: req.user });
 });
 
 // Import Route Handler

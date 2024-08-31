@@ -3,6 +3,7 @@ const { validateToken } = require("../services/authentication");
 function checkForAuthenticationCookie(cookieName) {
   return (req, res, next) => {
     const tokenCookieValue = req.cookies[cookieName];
+
     if (!tokenCookieValue) {
       next();
     }
@@ -10,7 +11,9 @@ function checkForAuthenticationCookie(cookieName) {
     try {
       const userPayload = validateToken(tokenCookieValue);
       req.user = userPayload;
-    } catch (error) {}
+    } catch (error) {
+      console.log("error is in middleware", error);
+    }
     next();
   };
 }

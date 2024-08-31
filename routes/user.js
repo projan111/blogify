@@ -25,7 +25,7 @@ router.post("/signup", async (req, res) => {
 router.post("/signin", async (req, res) => {
   const { email, password } = req.body;
   try {
-    // If the email and the pasword are matched the user's email and password from the database
+    // If the email and the pasword are matched from the database
     const token = await User.matchPasswordAndGenerateToken(email, password);
 
     return res.cookie("token", token).redirect("/");
