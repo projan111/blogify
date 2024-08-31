@@ -11,7 +11,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
       unique: true,
-      lowarcase: true,
+      lowercase: true,
     },
     salt: {
       // To hash the password
@@ -37,9 +37,9 @@ const userSchema = new Schema(
 userSchema.pre("save", function (next) {
   const user = this;
 
-  if (!user.isModified("password")) return;
+  if (!user.isModified("password")) return next();
 
-  const salt = randomBytes(16).toString();
+  const salt = randomBytes(16).toString("hex");
   const hashedPassword = createHmac("sha256", salt)
     .update(user.password)
     .digest("hex");
@@ -59,7 +59,7 @@ userSchema.static("matchPassword", async function (email, password) {
 
   const userProvidedHash = createHmac("sha256", salt)
     .update(password)
-    .digest("hax");
+    .digest("hex");
 
   if (hashedPassword !== userProvidedHash)
     throw new Error("Password does not matched!");
@@ -67,5 +67,5 @@ userSchema.static("matchPassword", async function (email, password) {
   return user;
 });
 
-const User = model("user", userSchema);
+const User = model("User", userSchema);
 module.exports = User;
