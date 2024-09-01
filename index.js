@@ -10,6 +10,7 @@ const {
   checkForAuthenticationCookie,
 } = require("./middlewares/authentication");
 const blogRoute = require("./routes/blog");
+const Blog = require("./models/blog");
 
 // Mongodb Connection
 mongoConnection("mongodb://127.0.0.1:27017/blogify");
@@ -19,19 +20,21 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie("token"));
+app.use(express.static(path.resolve("./public")));
 
 // Set Template Engine
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
 // Home route
-app.get("/", (req, res) => {
-  return res.render("home", { user: req.user });
+app.get("/", async (req, res) => {
+  const allBlogs = await Blog.find({}).sort({ createdAt: -1 });
+  return res.render("home", { user: req.user, blogs: allBlogs });
 });
 
 // Import Route Handler
 app.use("/user", userRoutes);
-app.use("/blog", blogRoute)
+app.use("/blog", blogRoute);
 
 // API Health Check
 app.get("/health-check", (req, res) => {
