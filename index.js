@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie("token"));
-app.use(express.static(path.resolve("./public")));
+app.use(express.static(path.resolve("./public"))); // We add this static middleware to render the uploaded images from the multer.
 
 // Set Template Engine
 app.set("view engine", "ejs");
