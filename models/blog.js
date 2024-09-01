@@ -23,4 +23,4 @@ const blogSchema = new Schema(
 );
 
 const Blog = model("blog", blogSchema);
-module.experts = Blog;
+module.exports = Blog;
