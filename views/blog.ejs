@@ -24,6 +24,27 @@
         />
         <h5><%= blog.createdBy.fullName %></h5>
       </div>
+      <div class="comments mt-4">
+        <h2 class="fw-bold">Comments</h2>
+
+        <% if (locals.user) { %>
+        <form action="/blog/comment/<%= blog._id %>" method="post">
+          <div class="mb-4 pb-4 d-flex gap-2" style="width: 50%">
+            <input
+              type="text"
+              class="form-control"
+              name="content"
+              placeholder="Enter your comments"
+            />
+            <button type="submit" class="btn btn-dark">Post</button>
+          </div>
+        </form>
+        <% } %>
+      </div>
+      <div class="d-flex flex-column">
+        <p class="comment-show"><%= locals.comments.content %></p>
+        <hr />
+      </div>
     </div>
     <%- include('./partials/script') %>
   </body>

@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const commentSchema = new Schema(
   {
-    conntent: {
+    content: {
       type: String,
       required: true,
     },
@@ -12,7 +12,7 @@ const commentSchema = new Schema(
     },
     createdBy: {
       type: Schema.Types.ObjectId,
-      ref: "user",
+      ref: "User",
     },
   },
   { timestamps: true }

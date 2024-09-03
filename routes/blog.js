@@ -31,15 +31,20 @@ blogRoute.get("/:id", async (req, res) => {
   }
   const blog = await Blog.findById(req.params.id).populate("createdBy");
   // console.log("blog:::", blog);
+  const comments = await Comment.find({ blogId: req.params.id }).populate(
+    "createdBy"
+  );
+  console.log("comment", comments);
   return res.render("blog", {
     user: req.user,
     blog,
+    comments,
   });
 });
 
 // Comment route
 blogRoute.post(
-  "/comment:blogId",
+  "/comment/:blogId",
   upload.single("coverImage"),
   async (req, res) => {
     await Comment.create({
@@ -47,6 +52,7 @@ blogRoute.post(
       blogId: req.params.blogId,
       createdBy: req.user._id,
     });
+
     return res.redirect(`/blog/${req.params.blogId}`);
   }
 );
