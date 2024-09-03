@@ -5,7 +5,11 @@
   </head>
   <body>
     <%- include('./partials/nav') %>
-    <div class="container mt-4 d-flex gap-2">
+    <div class="blog-title text-center mt-4 py-4">
+      <h1 class="fw-bold">Upgrade your knowledge by daily Articals</h1>
+      <h5>We post daily to incourage programmers link you to motivate.</h5>
+    </div>
+    <div class="container  mt-4 d-flex gap-2 justify-content-center">
       <% blogs.forEach(blog => { %>
       <div class="card" style="width: 18rem">
         <img
