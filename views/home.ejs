@@ -5,13 +5,11 @@
   </head>
   <body>
     <%- include('./partials/nav') %>
-    <div class="blog-title text-center mt-4 py-4">
+    <div class="blog-title text-center mt-4 py-4 ">
       <h1 class="fw-bold">Upgrade your knowledge by daily Articals</h1>
       <h5>We post daily to incourage programmers link you to motivate.</h5>
     </div>
-    <div
-      class="container my-4 row d-flex gap-3 justify-content-center mx-auto"
-    >
+    <div class="container my-4 row d-flex gap-3 justify-content-center mx-auto">
       <% blogs.forEach(blog => { %>
       <div class="card col-3 px-0" style="width: 18rem">
         <img
@@ -40,6 +38,7 @@
       </div>
       <% }) %>
     </div>
-    <%- include('./partials/script') %>
+
+    <%- include('./partials/footer') %> <%- include('./partials/script') %>
   </body>
 </html>
