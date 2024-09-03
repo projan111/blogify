@@ -5,8 +5,12 @@
   </head>
   <body>
     <%- include('./partials/nav') %>
-    <div class="container mt-4">
-      <form action="/user/signup" method="post">
+    <div
+      class="container mt-4 d-flex flex-column justify-content-center align-items-center"
+      style="height: 85vh"
+    >
+    <h2 class="mb-4 fw-semibold">Create Account</h2>
+      <form action="/user/signup" method="post" style="width: 20vw">
         <div class="mb-3">
           <label for="fullName" class="form-label">Full Name</label>
           <input
@@ -15,6 +19,7 @@
             id="fullName"
             name="fullName"
             aria-describedby="fullName"
+            placeholder="fullname"
           />
         </div>
         <div class="mb-3">
@@ -27,6 +32,7 @@
             id="exampleInputEmail1"
             name="email"
             aria-describedby="emailHelp"
+            placeholder="example@gmail.com"
           />
           <div id="emailHelp" class="form-text">
             We'll never share your email with anyone else.
@@ -39,6 +45,7 @@
             class="form-control"
             name="password"
             id="exampleInputPassword1"
+            placeholder="password"
           />
         </div>
         <button type="submit" class="btn btn-dark">Submit</button>

@@ -6,8 +6,12 @@
   <body>
     <%- include('./partials/nav') %>
 
-    <div class="container mt-4">
-      <form action="/user/signin" method="post">
+    <div
+      class="container mt-4 d-flex flex-column justify-content-center align-items-center"
+      style="height: 85vh"
+    >
+      <h2 class="mb-4 fw-semibold">Login</h2>
+      <form action="/user/signin" method="post" style="width: 20vw">
         <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label"
             >Email address</label
@@ -18,10 +22,8 @@
             id="exampleInputEmail1"
             name="email"
             aria-describedby="emailHelp"
+            placeholder="example@gmail.com"
           />
-          <div id="emailHelp" class="form-text">
-            We'll never share your email with anyone else.
-          </div>
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>
@@ -30,6 +32,7 @@
             class="form-control"
             name="password"
             id="exampleInputPassword1"
+            placeholder="password"
           />
         </div>
         <button type="submit" class="btn btn-dark">Submit</button>
