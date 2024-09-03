@@ -9,9 +9,11 @@
       <h1 class="fw-bold">Upgrade your knowledge by daily Articals</h1>
       <h5>We post daily to incourage programmers link you to motivate.</h5>
     </div>
-    <div class="container  mt-4 d-flex gap-2 justify-content-center">
+    <div
+      class="container my-4 row d-flex gap-3 justify-content-center mx-auto"
+    >
       <% blogs.forEach(blog => { %>
-      <div class="card" style="width: 18rem">
+      <div class="card col-3 px-0" style="width: 18rem">
         <img
           src="<%= blog.coverImage %>"
           class="card-img-top"
