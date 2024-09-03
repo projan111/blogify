@@ -4,6 +4,7 @@ const path = require("path");
 const blogRoute = Router();
 const Blog = require("../models/blog");
 const mongoose = require("mongoose");
+const Comment = require("../models/comment");
 
 // Implement multer methods
 const storage = multer.diskStorage({
@@ -29,12 +30,26 @@ blogRoute.get("/:id", async (req, res) => {
     return res.status(400).send("Invalid ID");
   }
   const blog = await Blog.findById(req.params.id).populate("createdBy");
-  console.log("blog:::", blog);
+  // console.log("blog:::", blog);
   return res.render("blog", {
     user: req.user,
     blog,
   });
 });
+
+// Comment route
+blogRoute.post(
+  "/comment:blogId",
+  upload.single("coverImage"),
+  async (req, res) => {
+    await Comment.create({
+      content: req.body.content,
+      blogId: req.params.blogId,
+      createdBy: req.user._id,
+    });
+    return res.redirect(`/blog/${req.params.blogId}`);
+  }
+);
 
 blogRoute.post("/", upload.single("coverImage"), async (req, res) => {
   const { title, body } = req.body;
