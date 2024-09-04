@@ -52,10 +52,15 @@ async function deleteBlog(req, res) {
   return res.redirect("/");
 }
 
+async function editBlog(req, res) {
+  return res.redirect("/add-new-blog");
+}
+
 module.exports = {
   getBlogUser,
   getBlogByUserId,
   createNewComments,
   createNewBlogs,
   deleteBlog,
+  editBlog,
 };
