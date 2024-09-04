@@ -1,7 +1,8 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const path = require("path");
-const PORT = 4000;
+const PORT = process.env.PORT || 3000;
 const ejs = require("ejs");
 const userRoutes = require("./routes/user");
 const cookieParser = require("cookie-parser");
@@ -13,7 +14,7 @@ const blogRoute = require("./routes/blog");
 const Blog = require("./models/blog");
 
 // Mongodb Connection
-mongoConnection("mongodb://127.0.0.1:27017/blogify");
+mongoConnection(process.env.MONGO_URL);
 
 // Middlewares
 app.use(express.urlencoded({ extended: false }));

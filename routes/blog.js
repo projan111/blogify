@@ -30,7 +30,6 @@ blogRoute.get("/:id", async (req, res) => {
     return res.status(400).send("Invalid ID");
   }
   const blog = await Blog.findById(req.params.id).populate("createdBy");
-  // console.log("blog:::", blog);
   const comments = await Comment.find({ blogId: req.params.id }).populate(
     "createdBy"
   );
