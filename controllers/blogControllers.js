@@ -53,7 +53,25 @@ async function deleteBlog(req, res) {
 }
 
 async function editBlog(req, res) {
-  return res.redirect("/add-new-blog");
+  try {
+    const blog = await Blog.findById(req.params.id);
+
+    return res.render("edit_blog", { blog });
+  } catch (error) {
+    console.log("Blog Edit Error", error);
+  }
+}
+
+async function updateBlog(req, res) {
+  const blogId = req.params.id;
+  const body = req.body;
+  try {
+    await Blog.findByIdAndUpdate(blogId, body);
+
+    return res.redirect(`/blog/${blogId}`);
+  } catch (error) {
+    console.log("Error updating blog", error);
+  }
 }
 
 module.exports = {
@@ -63,4 +81,5 @@ module.exports = {
   createNewBlogs,
   deleteBlog,
   editBlog,
+  updateBlog,
 };

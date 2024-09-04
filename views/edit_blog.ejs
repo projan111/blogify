@@ -5,7 +5,11 @@
   </head>
   <body>
     <%- include('./partials/nav') %>
-    <form action="/blog" method="post" enctype="multipart/form-data">
+    <form
+      action="/blog<%= blog._id %>?_method=PUT"
+      method="post"
+      enctype="multipart/form-data"
+    >
       <div class="container mt-4">
         <label for="title" class="form-label">Title</label>
         <input
@@ -13,6 +17,7 @@
           class="form-control"
           id="title"
           name="title"
+          value="<%= blog.title %>"
           aria-describedby="emailHelp"
           placeholder="add title"
         />
@@ -22,6 +27,7 @@
           placeholder="Write blog content"
           id="body"
           name="body"
+          value="<%= blog.body %>"
         ></textarea>
         <label for="coverImage" class="form-label">Cover image</label>
         <input
@@ -30,6 +36,7 @@
           id="coverImage"
           name="coverImage"
           aria-describedby="emailHelp"
+          value="<%= blog.coverImage %>"
         />
         <button type="submit" class="btn btn-dark mt-2">Create blog</button>
       </div>

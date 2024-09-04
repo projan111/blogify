@@ -9,6 +9,7 @@ const {
   createNewBlogs,
   deleteBlog,
   editBlog,
+  updateBlog,
 } = require("../controllers/blogControllers");
 
 // Implement multer methods
@@ -35,5 +36,6 @@ blogRoute.post(
 );
 blogRoute.post("/", upload.single("coverImage"), createNewBlogs);
 blogRoute.delete("/:id", deleteBlog);
-blogRoute.get("/edit-blog", editBlog);
+blogRoute.get("/:id/edit", editBlog);
+blogRoute.put("/:id", updateBlog);
 module.exports = blogRoute;
