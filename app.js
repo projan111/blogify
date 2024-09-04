@@ -6,6 +6,7 @@ const PORT = process.env.PORT || 3000;
 const ejs = require("ejs");
 const userRoutes = require("./routes/user");
 const cookieParser = require("cookie-parser");
+const methodOverride = require("method-override");
 const { mongoConnection } = require("./config/db");
 const {
   checkForAuthenticationCookie,
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie("token"));
 app.use(express.static(path.resolve("./public"))); // We add this static middleware to render the uploaded images from the multer.
+app.use(methodOverride("_method")); // installed and set up in your Express app
 
 // Set Template Engine
 app.set("view engine", "ejs");
