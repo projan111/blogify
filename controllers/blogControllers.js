@@ -47,7 +47,7 @@ async function createNewBlogs(req, res) {
 async function deleteBlog(req, res) {
   const user = await Blog.findByIdAndDelete(req.params.id);
 
-  console.log("it's not working", req.params.id);
+  console.log("Blog Deleted!", user);
 
   return res.redirect("/");
 }
