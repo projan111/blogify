@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Blog = require("../models/blog");
 const Comment = require("../models/comment");
+const User = require("../models/user");
 
 function getBlogUser(req, res) {
   return res.render("addBlog", { user: req.user });
@@ -55,8 +56,9 @@ async function deleteBlog(req, res) {
 async function editBlog(req, res) {
   try {
     const blog = await Blog.findById(req.params.id);
+    // const user = await User.findById(req.params.id);
 
-    return res.render("edit_blog", { blog });
+    return res.render("edit_blog", { blog, user: req.user });
   } catch (error) {
     console.log("Blog Edit Error", error);
   }

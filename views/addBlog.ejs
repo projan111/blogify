@@ -5,7 +5,8 @@
   </head>
   <body>
     <%- include('./partials/nav') %>
-    <form action="/blog" method="post" enctype="multipart/form-data">
+    <div class="container d-flex mt-4 gap-3 ">
+    <form action="/blog" method="post" enctype="multipart/form-data" style="width: 100%;">
       <div class="container mt-4">
         <label for="title" class="form-label">Title</label>
         <input
@@ -16,14 +17,14 @@
           aria-describedby="emailHelp"
           placeholder="add title"
         />
-        <label for="floatingTextarea">Paragraph</label>
+        <label for="body" class="pb-2 mt-2">Paragraph</label>
         <textarea
           class="form-control"
           placeholder="Write blog content"
           id="body"
           name="body"
         ></textarea>
-        <label for="coverImage" class="form-label">Cover image</label>
+        <label for="coverImage" class="form-label mt-2">Cover image</label>
         <input
           type="file"
           class="form-control"
@@ -31,9 +32,13 @@
           name="coverImage"
           aria-describedby="emailHelp"
         />
-        <button type="submit" class="btn btn-dark mt-2">Create blog</button>
+        <button type="submit" class="btn btn-dark mt-4">Create blog</button>
       </div>
     </form>
+    <div class="image">
+      <img src="/images/gallery.jpg" alt="gallery" width="300px" height="300" class="rounded-2 " style="opacity: .4;">
+    </div>
+    </div>
 
     <%- include('./partials/script') %>
   </body>
