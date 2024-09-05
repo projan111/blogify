@@ -5,15 +5,20 @@
   </head>
   <body>
     <%- include('./partials/nav') %>
-    <div class="container mt-4  d-flex gap-3 justify-content-between">
-      
+    <div class="container mt-4 d-flex gap-3 justify-content-between">
       <form
         style="width: 100%"
-        action="/blog<%= blog._id %>?_method=PUT"
-        method="post"
+        action="/blog/<%= blog._id %>?_method=PUT"
+        method="POST"
         enctype="multipart/form-data"
       >
         <div class="container mt-4">
+          <!-- Hidden input Incase if user doesn't upload the file -->
+          <input
+            type="hidden"
+            name="existingCoverImage"
+            value="<%= blog.coverImage %>"
+          />
           <label for="title" class="form-label">Title</label>
           <input
             type="text"
@@ -41,7 +46,8 @@
             name="coverImage"
             aria-describedby="emailHelp"
           />
-          <p class="mt-2" style="color: #777;">
+
+          <p class="mt-2" style="color: #777">
             <%= blog.coverImage.split('/').pop().split('-').pop() %>
             <svg
               xmlns="http://www.w3.org/2000/svg"

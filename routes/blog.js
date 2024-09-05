@@ -15,10 +15,10 @@ const {
 // Implement multer methods
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.resolve(`./public/uploads`));
+    cb(null, path.resolve(`public/uploads`));
   },
   filename: function (req, file, cb) {
-    const filename = `${Date.now()}-${file.originalname}`;
+    const filename = Date.now() + "-" + file.originalname;
     cb(null, filename);
   },
 });
@@ -37,5 +37,5 @@ blogRoute.post(
 blogRoute.post("/", upload.single("coverImage"), createNewBlogs);
 blogRoute.delete("/:id", deleteBlog);
 blogRoute.get("/:id/edit", editBlog);
-blogRoute.put("/:id", updateBlog);
+blogRoute.put("/:id", upload.single("coverImage"), updateBlog);
 module.exports = blogRoute;

@@ -66,13 +66,19 @@ async function editBlog(req, res) {
 
 async function updateBlog(req, res) {
   const blogId = req.params.id;
-  const body = req.body;
+  const updateData = {
+    title: req.body.title,
+    body: req.body.body,
+    coverImage: req.file ? req.file.filename : "",
+  };
+  // console.log("File:", req.file);
   try {
-    await Blog.findByIdAndUpdate(blogId, body);
+    await Blog.findByIdAndUpdate(blogId, updateData, { new: true });
 
     return res.redirect(`/blog/${blogId}`);
   } catch (error) {
     console.log("Error updating blog", error);
+    return res.status(500).send("There was an error updating the blog.");
   }
 }
 

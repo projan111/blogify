@@ -22,6 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
 app.use(checkForAuthenticationCookie("token"));
+// app.use("/uploads", express.static("public/uploads"));
 app.use(express.static(path.resolve("./public"))); // We add this static middleware to render the uploaded images from the multer.
 app.use(methodOverride("_method")); // installed and set up in your Express app
 
