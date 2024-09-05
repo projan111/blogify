@@ -13,12 +13,6 @@
         enctype="multipart/form-data"
       >
         <div class="container mt-4">
-          <!-- Hidden input Incase if user doesn't upload the file -->
-          <input
-            type="hidden"
-            name="existingCoverImage"
-            value="<%= blog.coverImage %>"
-          />
           <label for="title" class="form-label">Title</label>
           <input
             type="text"
@@ -73,7 +67,7 @@
       </form>
       <div class="image">
         <img
-          src="<%= blog.coverImage %>"
+          src="/uploads/<%= blog.coverImage %>"
           alt="cover images"
           style="width: 300px; height: 300px; object-fit: contain"
           class="rounded-2"

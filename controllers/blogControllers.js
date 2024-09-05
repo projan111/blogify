@@ -39,7 +39,7 @@ async function createNewBlogs(req, res) {
     title,
     body,
     createdBy: req.user._id,
-    coverImage: `/uploads/${req.file.filename}`,
+    coverImage: req.file.filename,
   });
 
   return res.redirect(`/blog/${blog._id}`);
